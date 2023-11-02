@@ -14,12 +14,12 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: false,
+            debug: true,
         },
     },
-    width: 800,
-    height: 800,
-    scene: [ Movement ],
+    width: 1280,
+    height: 720,
+    scene: [ Play ],
 }
 
 let game = new Phaser.Game(config)
@@ -27,4 +27,10 @@ let game = new Phaser.Game(config)
 let cursors
 let { height, width } = game.config
 
-let playerDirection;
+let spaceBar;
+let keyUP;
+let groundLevel = height  - 150;
+let centerX = game.config.width/2;
+let velocity = 450;
+let skySpeed = 3;
+let buildingSpeed = 1;
