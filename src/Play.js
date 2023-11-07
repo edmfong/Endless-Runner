@@ -41,7 +41,7 @@ class Play extends Phaser.Scene {
         this.bushes = this.add.tileSprite(width, height, width, height, 'background', 2).setScale(10);
 
         // initialize player
-        this.player = this.physics.add.sprite(width / 10, groundLevel,'Saitama').setScale(7).setOrigin(.5, 1).setDepth(99);
+        this.player = this.physics.add.sprite(width / 10, groundLevel + 100,'Saitama').setScale(7).setOrigin(.5, 1).setDepth(99);
         this.player.body.setSize(8, 16).setOffset(12, 16);
         this.player.setGravityY(1200);
         
