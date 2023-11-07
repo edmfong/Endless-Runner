@@ -1,3 +1,11 @@
+// Link to credited sfx:
+// Insect Squish: LeguiDust     - https://samplefocus.com/samples/insect-squish-sfx
+// Bone Crack: UNIVERSFIELD     - https://pixabay.com/sound-effects/bone-crack-121580/
+// Spray Paint: PixaBay         - https://pixabay.com/sound-effects/spray-paint-86162/
+// Cartoon Jump: PixaBay        - https://pixabay.com/sound-effects/cartoon-jump-6462/
+// Mouse Click: SoundReality    - https://pixabay.com/sound-effects/mouse-click-153941/
+// Punch: UNIVERSFIELD          - https://pixabay.com/sound-effects/punch-140236/
+// Cyborg Ninja: Kevin MacLeod  - https://uppbeat.io/track/kevin-macleod/cyborg-ninja
 class Credits extends Phaser.Scene {
     constructor() {
         super('creditScene');
