@@ -23,6 +23,7 @@ class GameOver extends Phaser.Scene {
 
         // load click sound
         this.clicksfx = this.sound.add('click');
+        this.clicksfx.setVolume(0.3);
 
         // replay button
         this.replayButton = this.physics.add.image(centerX + (64), height/2 + (height/20), 'buttons', 0).setScale(5).setOrigin(0, 1);

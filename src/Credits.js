@@ -40,6 +40,8 @@ class Credits extends Phaser.Scene {
 
         // load click sound
         this.clicksfx = this.sound.add('click');
+        this.clicksfx.setVolume(0.3);
+        
 
         // menu button
         this.menuButton = this.physics.add.image(centerX + (64), height/2 + (height/2.4), 'buttons', 2).setScale(5).setOrigin(0.5);

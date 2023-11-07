@@ -10,6 +10,7 @@ class Menu extends Phaser.Scene {
 
         // load click sound
         this.clicksfx = this.sound.add('click');
+        this.clicksfx.setVolume(0.3);
 
         // play button
         this.playButton = this.physics.add.image(centerX + (64) - 16, height/2 - (height/5), 'buttons', 4).setScale(5).setOrigin(1, 1);

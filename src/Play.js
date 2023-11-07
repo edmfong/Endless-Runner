@@ -12,7 +12,7 @@ class Play extends Phaser.Scene {
         });
 
         let musicConfig = {
-            volume: 0.5,
+            volume: 0.3,
             rate: 1,
             loop: true,
             delay: 0,
@@ -26,6 +26,11 @@ class Play extends Phaser.Scene {
         this.crunchsfx = this.sound.add('crunch');
         this.squishsfx = this.sound.add('squish');
         this.thudsfx = this.sound.add('thud');
+        this.jumpsfx.setVolume(0.3);
+        this.spraysfx.setVolume(0.3);
+        this.crunchsfx.setVolume(0.3);
+        this.squishsfx.setVolume(0.3);
+        this.thudsfx.setVolume(0.3);
 
         // initialize sky
         this.sky = this.add.tileSprite(width/2, width/2, width, height, 'background', 0).setScale(10);
