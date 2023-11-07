@@ -4,6 +4,29 @@ class Play extends Phaser.Scene {
     }
 
     create() {
+        this.cameras.main.fadeIn(1000, 0, 0, 0);    
+
+        // play bgm
+        this.bgm = this.sound.add('bgm', {
+            loop: true,
+        });
+
+        let musicConfig = {
+            volume: 0.5,
+            rate: 1,
+            loop: true,
+            delay: 0,
+        }
+
+        this.bgm.play();
+
+        // sounds
+        this.jumpsfx = this.sound.add('jump');
+        this.spraysfx = this.sound.add('spray');
+        this.crunchsfx = this.sound.add('crunch');
+        this.squishsfx = this.sound.add('squish');
+        this.thudsfx = this.sound.add('thud');
+
         // initialize sky
         this.sky = this.add.tileSprite(width/2, width/2, width, height, 'background', 0).setScale(10);
 
@@ -22,7 +45,7 @@ class Play extends Phaser.Scene {
         this.player.body.setSize(8, 16).setOffset(12, 16);
         this.player.setGravityY(1200);
         
-        // initialize moosquito
+        // initialize mosquito
         this.mosquito = this.add.sprite(width/1.05, height/1.2, 'mosquito', 0);
 
         // initialize spray
@@ -33,6 +56,11 @@ class Play extends Phaser.Scene {
         // initialize buttons
         this.attackButton = this.add.image(325, 85, 'buttons', 11).setScale(5).setOrigin(1, 1);
         this.jumpButton = this.add.image(410, 85, 'buttons', 13).setScale(5).setOrigin(1, 1);
+
+        // initialize time and highscore
+        time = 0;
+        this.distanceDisplay = this.add.text(width - width/7, height/50, 'Time: ' + time).setScale(2).setColor('black').setFontFamily('Arial');
+        this.highScoreDisplay = this.add.text(width/2, height/50, 'Highscore: ' + highScore).setScale(2).setColor('black').setFontFamily('Arial').setOrigin(0.5, 0);
 
         // initialize monster obstacles
         this.monsterGroup = this.add.group({
@@ -78,7 +106,13 @@ class Play extends Phaser.Scene {
         skySpeed = 3;
         buildingSpeed = 1;
 
-        this.cameras.main.fadeIn(1000, 0, 0, 0);        
+        // timer
+        this.timer = this.time.addEvent({
+            delay: 1000,
+            callback: this.updateTimer,
+            callbackScope: this,
+            loop: true,
+        });
     }
 
     addMonster() {
@@ -144,6 +178,7 @@ class Play extends Phaser.Scene {
     
             // check for attack key
             if (Phaser.Input.Keyboard.JustDown(spaceBar) && !(this.onCooldown)) {
+                this.spraysfx.play();
                 this.onCooldown = true;
                 this.sprayAttack.setAlpha(1);
                 this.player.stop('run');
@@ -153,6 +188,7 @@ class Play extends Phaser.Scene {
 
             // check for jump key
             if (Phaser.Input.Keyboard.JustDown(keyUP) && this.player.body.touching.down) {
+                this.jumpsfx.play();
                 this.player.setVelocityY(-500);
             }
             if (!(this.player.body.touching.down)) {
@@ -187,7 +223,12 @@ class Play extends Phaser.Scene {
 
         }
 
-        else {
+        else { // game is over
+            if (time > highScore) {
+                highScore = time;
+                this.highScoreDisplay.setText('Highscore: ' + highScore);
+            }
+            this.bgm.stop();
             velocity = 0;
             skySpeed = 0;
             buildingSpeed = 0;
@@ -202,6 +243,7 @@ class Play extends Phaser.Scene {
 
     // collider w/ monsters
     monsterCollision(monster) {
+        this.thudsfx.play();
         this.dead = true;
         killedBy = 'monster';
         this.player.stop('run');
@@ -217,6 +259,7 @@ class Play extends Phaser.Scene {
 
     // collider w/ cone
     coneCollision(cone) {
+        this.thudsfx.play();
         this.dead = true;
         killedBy = 'cone';
         this.player.stop('run');
@@ -232,9 +275,25 @@ class Play extends Phaser.Scene {
 
     // collider w/ spray
     sprayCollision(spray, monster) {
+        if (monster.texture.key == 'Slugrus') {
+            this.squishsfx.play();
+        }
+        else {
+            this.crunchsfx.play();
+        }
         monster.setTexture(monster.texture, 2);
         this.clock = this.time.delayedCall(20, () => {
             monster.destroy();
         }, null, this);
+    }
+
+    updateTimer() {
+        if (!(gameOver)) {
+            time++;
+            this.distanceDisplay.setText('Time: ' + time);
+        }
+        else {
+            this.timer.remove();
+        }
     }
 }

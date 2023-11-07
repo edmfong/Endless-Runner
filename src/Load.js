@@ -91,9 +91,22 @@ class Load extends Phaser.Scene {
             frameWidth: 64,
             frameHeight: 16,
         });
+        this.load.spritesheet('headers', './assets/spritesheets/headers.png', {
+            frameWidth: 128,
+            frameHeight: 8,
+        });
         this.load.image('ground', './assets/spritesheets/ground.png');
         this.load.image('spray', './assets/spritesheets/spray.png');
         this.load.image('cone', './assets/spritesheets/cone.png');
+
+        // load sfx + bgm
+        this.load.audio('bgm', './assets/sfx/bgm.mp3');
+        this.load.audio('click', './assets/sfx/click.mp3');
+        this.load.audio('crunch', './assets/sfx/crunch.mp3');
+        this.load.audio('jump', './assets/sfx/jump.mp3');
+        this.load.audio('spray', './assets/sfx/spray.mp3');
+        this.load.audio('squish', './assets/sfx/squish.wav');
+        this.load.audio('thud', './assets/sfx/thud.mp3');
     }
 
     create() {

@@ -6,6 +6,11 @@ class Menu extends Phaser.Scene {
     create() {
         this.cameras.main.fadeIn(1000, 0, 0, 0);
 
+        this.header = this.add.image(centerX, height/10, 'headers', 0).setScale(10);
+
+        // load click sound
+        this.clicksfx = this.sound.add('click');
+
         // play button
         this.playButton = this.physics.add.image(centerX + (64) - 16, height/2 - (height/5), 'buttons', 4).setScale(5).setOrigin(1, 1);
         this.playButton.body.setSize(42, 16);
@@ -13,6 +18,7 @@ class Menu extends Phaser.Scene {
 
         this.playButton.setInteractive();
         this.playButton.on('pointerdown', () => {
+            this.clicksfx.play();
             this.playButton.setTexture('buttons', 5);
             this.time.delayedCall(150, () => {
                 this.scene.start('playScene');
@@ -26,6 +32,7 @@ class Menu extends Phaser.Scene {
 
         this.howToButton.setInteractive();
         this.howToButton.on('pointerdown', () => {
+            this.clicksfx.play();
             this.howToButton.setTexture('buttons', 9);
             this.time.delayedCall(150, () => {
                 this.scene.start('instructionsScene');
@@ -39,6 +46,7 @@ class Menu extends Phaser.Scene {
 
         this.creditButton.setInteractive();
         this.creditButton.on('pointerdown', () => {
+            this.clicksfx.play();
             this.creditButton.setTexture('buttons', 7);
             this.time.delayedCall(150, () => {
                 this.scene.start('creditScene');

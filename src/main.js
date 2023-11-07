@@ -2,7 +2,10 @@
 // Name: Edwin Fong
 // Date: 10/20/23
 
-// Spritesheet by ElvGames: https://elv-games.itch.io/free-fantasy-dreamland-sprites
+// approximate hours spent: 25
+// creative tilt:
+// tweens for falling animation, created custom headers, changed css to center and customize background,
+// spawning multiple objects with different textures and sfx
 
 "use strict"
 
@@ -15,7 +18,7 @@ let config = {
     physics: {
         default: 'arcade',
         arcade: {
-            debug: true,
+            debug: false,
         },
     },
     width: 1280,
@@ -40,3 +43,5 @@ let skySpeed = 3;
 let buildingSpeed = 1;
 let gameOver = false;
 let killedBy;
+let time = 0;
+let highScore = 0;

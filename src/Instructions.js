@@ -7,6 +7,11 @@ class Instructions extends Phaser.Scene {
         console.log('instruct');
         this.cameras.main.fadeIn(1000, 0, 0, 0);
 
+        this.header = this.add.image(centerX, height/10, 'headers', 3).setScale(10);
+
+        // load click sound
+        this.clicksfx = this.sound.add('click');
+
         // play button
         this.playButton = this.physics.add.image((centerX) + (centerX/12), height/2 - (height/5), 'buttons', 4).setScale(5).setOrigin(0.5, 0.5);
         this.playButton.body.setSize(42, 16);
@@ -14,6 +19,7 @@ class Instructions extends Phaser.Scene {
 
         this.playButton.setInteractive();
         this.playButton.on('pointerdown', () => {
+            this.clicksfx.play();
             this.playButton.setTexture('buttons', 5);
             this.time.delayedCall(150, () => {
                 this.scene.start('playScene');
