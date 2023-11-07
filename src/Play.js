@@ -96,9 +96,6 @@ class Play extends Phaser.Scene {
         // gameOver
         gameOver = false;
 
-        // movespeed
-        this.moveSpeed = 10;
-
         // dead
         this.dead = false;
         killedBy = '';
