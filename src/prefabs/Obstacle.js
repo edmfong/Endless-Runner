@@ -14,7 +14,7 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
     update() {
         if (this.newObstacle && this.x < centerX) {
             // 20% to increase speed
-            this.randVelocity = Phaser.Math.Between(1, 5);
+            this.randVelocity = Phaser.Math.Between(1, 10);
             if (this.randVelocity == 5) {
                 velocity += 10;
                 skySpeed = 3;
