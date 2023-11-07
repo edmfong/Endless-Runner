@@ -13,6 +13,14 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
 
     update() {
         if (this.newObstacle && this.x < centerX) {
+            // 20% to increase speed
+            this.randVelocity = Phaser.Math.Between(1, 5);
+            if (this.randVelocity == 5) {
+                velocity += 10;
+                skySpeed = 3;
+                buildingSpeed = 1;
+                console.log("velocity +5\nvelocity is now " + velocity);
+            }
             this.rand = Phaser.Math.Between(0, 1);
             if (this.rand == 0) {
                 this.parentScene.addMonster(this.parent, this.velocity, this.texture);
@@ -23,8 +31,12 @@ class Obstacle extends Phaser.Physics.Arcade.Sprite {
             this.newObstacle = false;
         }
 
-        if(this.x < -this.width) {
+        if (this.x < -this.width) {
                 this.destroy();           
+        }
+
+        if (gameOver) {
+            this.setVelocityX(0);
         }
     }
 }

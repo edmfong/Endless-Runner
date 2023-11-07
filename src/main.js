@@ -7,6 +7,7 @@
 "use strict"
 
 let config = {
+    parent: 'phaser-game',
     type: Phaser.AUTO,
     render: {
         pixelArt: true,
@@ -19,7 +20,8 @@ let config = {
     },
     width: 1280,
     height: 720,
-    scene: [ Play ],
+    backgroundColor: '#9c3c37',
+    scene: [ Load, Menu, Instructions, Credits, Play, GameOver ],
 }
 
 let game = new Phaser.Game(config)
@@ -29,8 +31,12 @@ let { height, width } = game.config
 
 let spaceBar;
 let keyUP;
-let groundLevel = height  - 150;
+let keyR;
+let groundLevel = height  - 190;
 let centerX = game.config.width/2;
+let centerY = game.config.height/2;
 let velocity = 450;
 let skySpeed = 3;
 let buildingSpeed = 1;
+let gameOver = false;
+let killedBy;

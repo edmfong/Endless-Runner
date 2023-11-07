@@ -3,12 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercise 01: Normalized Movement</title>
-</head>
-<body>
+    <title>Endless Runner</title>
     <script src="./lib/phaser.js"></script>
     <script src="./src/prefabs/Obstacle.js"></script>
+    <script src="./src/Load.js"></script>
+    <script src="./src/Menu.js"></script>
+    <script src="./src/Credits.js"></script>
+    <script src="./src/Instructions.js"></script>
     <script src="./src/Play.js"></script>
+    <script src="./src/GameOver.js"></script>
     <script src="./src/main.js"></script>
+    <style>
+        body {
+            background-color: #e9bf5c;
+        }
+        canvas {
+            border: 5px solid white;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <div id="phaser-game"></div>
+    </center>
 </body>
 </html>
